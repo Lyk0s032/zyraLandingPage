@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import videoExample from '../assets/videoExample.mp4'
 
 // ─── Datos de demo ────────────────────────────────────────────────────────────
 
-const SPORTS = ['Fútbol', 'Tenis', 'Pádel']
+const SPORTS = ['Fútbol', 'Tenis', 'Voley']
 
 const ALL_COURTS = [
   {
@@ -23,9 +23,9 @@ const ALL_COURTS = [
     },
     gallery: [
       'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&q=80',
-      'https://images.unsplash.com/photo-1551958219-acbc595b9ead?w=800&q=80',
+      'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80',
       'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80',
-      'https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=800&q=80',
+      'https://images.unsplash.com/photo-1589487391730-58f20eb2c308?w=800&q=80',
     ],
     description: 'Cancha profesional de fútbol 5 con césped sintético de última generación. Totalmente techada y con sistema de iluminación LED de alta potencia para partidos nocturnos. Perfecta para torneos y entrenamientos profesionales.',
     features: [
@@ -44,7 +44,7 @@ const ALL_COURTS = [
     tags: ['Grass Natural', 'Iluminada'],
     price: 55000,
     image:
-      'https://images.unsplash.com/photo-1551958219-acbc595b9ead?w=800&q=80',
+      'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80',
     video: videoExample,
     location: {
       lat: 4.6097100,
@@ -52,9 +52,9 @@ const ALL_COURTS = [
       address: 'Calle 123 #45-67, Bogotá',
     },
     gallery: [
-      'https://images.unsplash.com/photo-1551958219-acbc595b9ead?w=800&q=80',
+      'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=800&q=80',
       'https://images.unsplash.com/photo-1575361204480-aadea25e6e68?w=800&q=80',
-      'https://images.unsplash.com/photo-1529900748604-07564a03e7a6?w=800&q=80',
+      'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&q=80',
     ],
     description: 'Cancha de fútbol con césped natural perfectamente mantenido. Ideal para quienes buscan la sensación del juego tradicional en grass natural con excelente sistema de drenaje.',
     features: [
@@ -73,17 +73,17 @@ const ALL_COURTS = [
     tags: ['Polvo de Ladrillo', 'Nocturna'],
     price: 45000,
     image:
-      'https://images.unsplash.com/photo-1544298621-35a764f3b079?w=800&q=80',
-    video: videoExample,
+      'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&q=80',
+    video: null,
     location: {
       lat: 4.6097100,
       lng: -74.0817500,
       address: 'Calle 123 #45-67, Bogotá',
     },
     gallery: [
-      'https://images.unsplash.com/photo-1544298621-35a764f3b079?w=800&q=80',
       'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=800&q=80',
-      'https://images.unsplash.com/photo-1558478551-1a378f63328e?w=800&q=80',
+      'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?w=800&q=80',
+      'https://images.unsplash.com/photo-1542144582-1ba00456b5e3?w=800&q=80',
     ],
     description: 'Court profesional de tenis con superficie de polvo de ladrillo tipo arcilla, ideal para entrenamientos y torneos. Excelente sistema de iluminación nocturna.',
     features: [
@@ -97,13 +97,13 @@ const ALL_COURTS = [
   },
   {
     id: 4,
-    name: 'Pádel Court 1',
-    sport: 'Pádel',
-    tags: ['Cristal', 'Techada', 'LED'],
+    name: 'Cancha de Voley Playa 1',
+    sport: 'Voley',
+    tags: ['Arena Premium', 'Iluminada', 'Red Profesional'],
     price: 70000,
     image:
       'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80',
-    video: videoExample,
+    video: null,
     location: {
       lat: 4.6097100,
       lng: -74.0817500,
@@ -111,17 +111,17 @@ const ALL_COURTS = [
     },
     gallery: [
       'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?w=800&q=80',
-      'https://images.unsplash.com/photo-1554068865-24cecd4e34b8?w=800&q=80',
-      'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=800&q=80',
+      'https://images.unsplash.com/photo-1592656094267-764a45160876?w=800&q=80',
+      'https://images.unsplash.com/photo-1619296094543-99aca1aa1f9e?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Zm9uZG8lMjBkZSUyMHBhbnRhbGxhJTIwZGUlMjB2b2xlaWJvbHxlbnwwfHwwfHx8MA%3D%3D',
     ],
-    description: 'Cancha de pádel premium con paredes de cristal templado y césped sintético de competición. Totalmente techada con iluminación LED profesional para juego nocturno.',
+    description: 'Cancha profesional de voley playa con arena fina importada de alta calidad. Iluminación LED profesional para juego nocturno y red oficial de competición. Perfecta para torneos, entrenamientos y diversión con amigos.',
     features: [
-      { label: 'Tipo de Superficie', value: 'Césped Sintético Competición' },
-      { label: 'Paredes', value: 'Cristal Templado Profesional' },
-      { label: 'Techada', value: 'Sí, estructura metálica' },
-      { label: 'Iluminación', value: 'LED Alta Definición' },
-      { label: 'Dimensiones', value: '20m x 10m (Reglamentarias)' },
-      { label: 'Zona de Descanso', value: 'Bancos integrados' },
+      { label: 'Tipo de Superficie', value: 'Arena Fina Importada Premium' },
+      { label: 'Red', value: 'Profesional Regulable (Oficial)' },
+      { label: 'Techada', value: 'No (Cancha al aire libre)' },
+      { label: 'Iluminación', value: 'LED Alta Potencia Nocturna' },
+      { label: 'Dimensiones', value: '16m x 8m (Reglamentarias)' },
+      { label: 'Zona de Descanso', value: 'Bancas y sombrillas' },
     ],
   },
 ]
@@ -357,7 +357,7 @@ function TimeGrid({ court, duration, selectedTime, onSelect }) {
 
 // ─── Vista de Detalles de Cancha ──────────────────────────────────────────────
 
-function CourtDetailView({ court, onClose, slug }) {
+function CourtDetailView({ court, onClose, slug, navigate }) {
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState(0)
   const videoRef = useRef(null)
 
@@ -375,7 +375,10 @@ function CourtDetailView({ court, onClose, slug }) {
           <p className="text-xs text-[#999] tracking-[0.3em] uppercase mb-1.5 font-bold">
             Complejo Deportivo
           </p>
-          <h1 className="text-white font-black text-2xl md:text-3xl tracking-tight leading-none">
+          <h1 
+            onClick={() => navigate(`/c/${slug}`)}
+            className="text-white font-black text-2xl md:text-3xl tracking-tight leading-none cursor-pointer hover:text-[#39FF14] transition-colors"
+          >
             {formatSlug(slug)}
           </h1>
         </div>
@@ -387,20 +390,19 @@ function CourtDetailView({ court, onClose, slug }) {
         </button>
       </div>
 
-      {/* Video Presentacional */}
-      <div className="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-[#2e2e2e] shadow-2xl">
-        <video
-          ref={videoRef}
-          src={court.video}
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-          <p className="text-white font-black text-sm tracking-widest">VIDEO PRESENTACIONAL</p>
+      {/* Video Presentacional - Solo para canchas que tienen video */}
+      {court.video && (
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden border-2 border-[#2e2e2e] shadow-2xl">
+          <video
+            ref={videoRef}
+            src={court.video}
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+          />
         </div>
-      </div>
+      )}
 
       {/* Galería de Imágenes */}
       <div className="space-y-3">
@@ -574,6 +576,7 @@ function BookingDrawer({ court, time, duration, slug, onClose, isMobile }) {
 
 export default function ReservationScreen() {
   const { slug } = useParams()
+  const navigate = useNavigate()
   const DATES = generateDates()
 
   const [selectedSport, setSelectedSport] = useState('Fútbol')
@@ -644,7 +647,10 @@ export default function ReservationScreen() {
           <p className="text-xs text-[#999] tracking-[0.3em] uppercase mb-1.5 font-bold">
             Complejo Deportivo
           </p>
-          <h1 className="text-white font-black text-2xl md:text-3xl tracking-tight leading-none">
+          <h1 
+            onClick={() => navigate(`/c/${slug}`)}
+            className="text-white font-black text-2xl md:text-3xl tracking-tight leading-none cursor-pointer hover:text-[#39FF14] transition-colors"
+          >
             {formatSlug(slug)}
           </h1>
         </div>
@@ -771,6 +777,7 @@ export default function ReservationScreen() {
               court={viewingCourtDetail} 
               onClose={handleCloseDetails}
               slug={slug}
+              navigate={navigate}
             />
           ) : (
             <>
@@ -823,6 +830,7 @@ export default function ReservationScreen() {
               court={viewingCourtDetail} 
               onClose={handleCloseDetails}
               slug={slug}
+              navigate={navigate}
             />
           ) : (
             ConfigPanel
